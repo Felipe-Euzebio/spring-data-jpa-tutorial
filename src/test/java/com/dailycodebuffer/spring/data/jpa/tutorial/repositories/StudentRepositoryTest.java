@@ -1,12 +1,9 @@
 package com.dailycodebuffer.spring.data.jpa.tutorial.repositories;
 
-import java.security.Guard;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.dailycodebuffer.spring.data.jpa.tutorial.entities.Guardian;
@@ -52,6 +49,24 @@ public class StudentRepositoryTest {
     public void printAllStudents() {
         List<Student> studentList = studentRepository.findAll();
         System.out.println("studentList = " + studentList);
+    }
+
+    @Test
+    public void printStudentByFirstName() {
+        List<Student> students = studentRepository.findByFirstName("Shivam");
+        System.out.println("students = " + students);
+    }
+
+    @Test
+    public void printStudentByFirstNameContaining() {
+        List<Student> students = studentRepository.findByFirstNameContaining("sh");
+        System.out.println("students = " + students);
+    }
+
+    @Test
+    public void printStudentBasedOnGuardianName() {
+        List<Student> students = studentRepository.findByGuardianName("John Doe");
+        System.out.println("students = " + students);
     }
     
 }
