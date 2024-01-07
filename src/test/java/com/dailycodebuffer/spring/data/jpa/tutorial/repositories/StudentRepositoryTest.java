@@ -95,7 +95,7 @@ public class StudentRepositoryTest {
 
     @Test
     public void updateStudentNameByEmailId() {
-        int updatedRows = studentRepository.updateStudentNameByEmailId(
+        studentRepository.updateStudentNameByEmailId(
             "Shabbi Dawoodi",
             "shivam@gmail.com"
         );
