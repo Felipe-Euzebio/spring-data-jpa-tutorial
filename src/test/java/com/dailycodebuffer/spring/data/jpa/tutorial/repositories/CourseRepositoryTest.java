@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.dailycodebuffer.spring.data.jpa.tutorial.entities.Course;
+import com.dailycodebuffer.spring.data.jpa.tutorial.entities.Student;
 import com.dailycodebuffer.spring.data.jpa.tutorial.entities.Teacher;
 
 @SpringBootTest
@@ -78,6 +79,30 @@ public class CourseRepositoryTest {
         List<Course> courses = repository.findByTitleContaining("D", firstPageTenRecords).getContent();
 
         System.out.println("courses = " + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+        Teacher teacher = Teacher.builder()
+            .firstName("Lizze")
+            .lastName("McGuire")
+            .build();
+
+        Student student = Student.builder()
+            .firstName("Abhishek")
+            .lastName("Singh")
+            .emailId("abhishek@gmail.com")
+            .build();
+
+        Course course = Course.builder()
+            .title("AI")
+            .credit(12)
+            .teacher(teacher)
+            .build();
+
+        course.addStudents(student);
+
+        repository.save(course);
     }
 
 }
